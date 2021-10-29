@@ -1,23 +1,68 @@
 import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Header from './Pages/Home/Header/Header';
+import Login from './Pages/Login/Login';
+import Home from './Pages/Home/Home/Home';
+import Services from './Pages/Services/Services';
+import Banner from './Pages/Home/Banner/Banner';
+import Details from './Pages/Details/Details';
+import Choose from './Pages/Choose/Choose';
+import Footer from './Pages/Home/Footer/Footer';
+import AuthProvider from './context/AuthProvider';
+import Award from './Pages/Award/Award';
+import Contact from './Pages/Contact/Contact';
+import PrivateRoute from './Pages/PrivateRoute/PrivateRoute';
+import Order from './Pages/Order/Order';
+import MyOrders from './Pages/MyOrders/MyOrders';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AuthProvider>
+        <Router>
+          <Header></Header>
+          <Switch>
+            <Route exact path="/">
+              <Home></Home>
+            </Route>
+            <Route path="/home">
+              <Home></Home>
+            </Route>
+            <Route path="/banner">
+              <Banner></Banner>
+            </Route>
+            <Route path="/services">
+              <Services></Services>
+            </Route>
+            <Route path="/details/:id">
+              <Details></Details>
+            </Route>
+            <Route path="/order/:id">
+              <Order></Order>
+            </Route>
+            <Route path="/myOrder">
+              <MyOrders></MyOrders>
+            </Route>
+            {/* <Route path="/orders">
+              <Orders></Orders>
+            </Route> */}
+            <Route path="/contact">
+              <Contact></Contact>
+            </Route>
+            <Route path="/choose">
+              <Choose></Choose>
+            </Route>
+            <Route path="/award">
+              <Award></Award>
+            </Route>
+            <Route path="/login">
+              <Login></Login>
+            </Route>
+          </Switch>
+          <Footer></Footer>
+        </Router>
+      </AuthProvider>
     </div>
   );
 }
