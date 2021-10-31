@@ -1,24 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Service from '../Service/Service';
+import useAuth from '../../Hooks/useAuth';
 
 
 const Services = () => {
-    const [services, setServices] = useState([]);
-    useEffect(() => {
-        const url = '/travels.json';
-        fetch(url)
-            .then(res => res.json())
-            .then(data => setServices(data))
-    }, []);
+    const { services } = useAuth();
+    // const { services } = allContexts;
 
     return (
-        <div className="mt-lg-4">
+        <div className="mt-lg-4 text-center">
             <h2>Our Tour Packages</h2>
             <div className="container">
                 <div className="row mt-4">
                     {
                         services.map(service => <Service
-                            key={service.id}
+                            key={service.key}
                             service={service}
                         ></Service>)
                     }

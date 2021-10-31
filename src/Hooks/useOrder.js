@@ -1,65 +1,45 @@
-import React from 'react';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import useFirebase from './useFirebase';
+import { useEffect, useState } from "react";
 
 const useOrder = () => {
     const [selectedService, setSelectedService] = useState([]);
-    const { user } = useFirebase();
-    const { uid } = user;
+
 
     useEffect(() => {
-        const url = `/travels.json/myOrder/${uid}`;
-        fetch(url)
-            .then(res => res.json())
-            .then(data => {
-                if (data.length) {
-                    setSelectedService(data);
-                }
-            })
-    }, [uid]);
+        const tour = getTour();
+        setSelectedService(tour);
+    }, [])
 
-    function addToOrder(service) {
-        const isHave = selectedService.find((selected) => selected.id === service.id);
-        delete service.id;
-        service.uid = uid;
-        service.status = "Pending";
+    const getTour = () => {
+        let tour;
+        const isHave = localStorage.getItem("tour");
         if (isHave) {
-            alert('Order has been added!');
+            tour = JSON.parse(isHave);
         }
         else {
-            fetch("/travels.json")
-                .then(res => res.json())
-                .then(data => {
-                    if (data.insertedId) {
-                        const newSelection = [...selectedService, service];
-                        setSelectedService(newSelection);
-                    }
-                });
+            tour = [];
+        }
+        return tour;
+    }
+
+    const addToOrder = (newService) => {
+        const isHave = selectedService.find(selected => selected.id === newService.id);
+        if (isHave) {
+            alert("Already Purchased");
+        }
+        else {
+            const newSelection = [...selectedService, newService];
+            localStorage.setItem("tour", JSON.stringify(newSelection));
+            setSelectedService(newSelection);
         }
     }
 
-    function remove(id) {
-        const uri = `/travels.json/delete/${id}`;
-        fetch(uri)
-            .then(res => res.json())
-            .then(data => {
-                if (data.deletedCount === 1) {
-                    const selectAfterRemove = selectedService.filter((service) => service.id !== id);
-                    setSelectedService(selectAfterRemove);
-                }
-                else {
-                    alert('Something went Wrong!');
-                }
-            });
+    const remove = (id) => {
+        const selectAfterRemove = selectedService.filter((service) => service.id !== id);
+        localStorage.setItem("tour", JSON.stringify(selectAfterRemove));
+        setSelectedService(selectAfterRemove);
     }
 
-    return {
-        setSelectedService,
-        remove,
-        addToOrder,
-        selectedService
-    };
+    return { addToOrder, selectedService, remove, setSelectedService }
 };
 
 export default useOrder;

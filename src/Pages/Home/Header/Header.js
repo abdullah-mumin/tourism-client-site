@@ -1,10 +1,19 @@
 import React from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
+import useAuth from '../../../Hooks/useAuth';
+
+
 
 const Header = () => {
+
+
+    const { allContexts } = useAuth();
+    const { user, logOut } = allContexts;
+
+    // console.log(user);
     return (
-        <div>
+        <div className="sticky-top">
             <Navbar className="bg-info" collapseOnSelect expand="lg">
                 <Container>
                     <Navbar.Brand as={NavLink} className="text-black" to="/home">
@@ -22,17 +31,31 @@ const Header = () => {
                                 Services
                             </Nav.Link>
 
-                            <Nav.Link as={NavLink} to="/myOrder" className="text-black">
-                                My Orders
-                            </Nav.Link>
                             <Nav.Link as={NavLink} to="/contact" className="text-black">
                                 Contact us
                             </Nav.Link>
-
-                            <Nav.Link className="text-black" as={NavLink} to="/login">
-                                Log in
-                            </Nav.Link>
-
+                            {
+                                user?.email ? (
+                                    <>
+                                        <Nav.Link as={NavLink} to="/myOrder" className="text-black">
+                                            My Orders
+                                        </Nav.Link>
+                                        <Nav.Link as={NavLink} to="/dashboard" className="text-black">
+                                            Dashboard
+                                        </Nav.Link>
+                                        <Nav.Link as={NavLink} to="/home" onClick={logOut} className="text-black">
+                                            Log out
+                                        </Nav.Link>
+                                        <Nav.Link as={NavLink} to="/home" className="text-black fw-bold">
+                                            {user?.displayName}
+                                        </Nav.Link>
+                                    </>
+                                )
+                                    :
+                                    <Nav.Link className="text-black" as={NavLink} to="/login">
+                                        Log in
+                                    </Nav.Link>
+                            }
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

@@ -1,120 +1,82 @@
 import React, { useEffect, useState } from 'react';
-import { Form, Button, Row, Col, InputGroup, FormControl } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
-import { useHistory } from 'react-router';
+import { useParams, useHistory } from 'react-router-dom';
+import useServices from '../../Hooks/useServices';
+import { useForm } from 'react-hook-form';
+import './Order.css';
 import useAuth from '../../Hooks/useAuth';
+import useOrder from '../../Hooks/useOrder';
 
 
 const Order = () => {
+    const { reset } = useForm();
+
     const { id } = useParams();
-    const [Orders, setOrders] = useState([]);
-    const [singleOrder, setSinglrOrder] = useState({});
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-
+    const { services, allContexts, addToOrder } = useAuth();
+    const { user } = allContexts;
     const history = useHistory();
-    const { allContexts, user } = useAuth();
-    // const { user } = allContexts;
-    const { uid } = user;
-    console.log(uid);
+    const newService = services?.find((service) => service.id === Number(id));
+    const [singleOrder, setSinglrOrder] = useState({});
 
+    const handleInputs = (e) => {
 
-    useEffect(() => {
-        const url = '/travels.json';
-        fetch(url)
-            .then(res => res.json())
-            .then(data => {
-                setOrders(data);
-            })
-
-    }, []);
-
-    useEffect(() => {
-        if (Orders.length > 0) {
-            const remainingData = Orders.find(order => order.id == id);
-            setSinglrOrder(remainingData);
-        }
-    }, [Orders]);
-    // console.log(singleOrder);
-
-    const handleGetName = e => {
-        console.log(e.target.value);
-        setName(e.target.value);
-    };
-    const handleGetEmail = e => {
-        console.log(e.target.value);
-        setEmail(e.target.value);
-    };
-
-    const handleOrderConfirm = (e) => {
-        e.preventDefault();
-        console.log("clicked")
     }
 
+    const handleSubmit = e => {
+        e.preventDefault();
+        alert('This feature is Under Development');
+    };
+
+    useEffect(() => {
+        if (services.length > 0) {
+            const remainingData = services.find(order => order.id == id);
+            setSinglrOrder(remainingData);
+            reset(remainingData);
+        }
+    }, [services, reset]);
+
     return (
-        <div>
-            <p>Name: {singleOrder?.name}</p>
-            <div className="text-center my-4">
-                <h2>Place Your Order</h2>
-                <p className="text-danger text-center"></p>
-                <div className="w-25 mx-auto">
-                    <Form onSubmit={handleOrderConfirm}>
-                        <Row>
-                            <Col className="text-start">
-                                <Form.Label htmlFor="name" visuallyHidden>
-                                    Your Name
-                                </Form.Label>
-                                <InputGroup className="mb-2">
-                                    <FormControl
-                                        required
-                                        onBlur={handleGetName}
-                                        type="text"
-                                        autoComplete="current-name"
-                                        id="name"
-                                        placeholder="Enter your name"
-                                    />
-                                </InputGroup>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col className="text-start">
-                                <Form.Label htmlFor="email" visuallyHidden>
-                                    Your Email Address
-                                </Form.Label>
-                                <InputGroup className="mb-2">
-                                    <FormControl
-                                        required
-                                        onBlur={handleGetEmail}
-                                        type="email"
-                                        autoComplete="current-email"
-                                        id="email"
-                                        placeholder="Enter your email address"
-                                    />
-                                </InputGroup>
-                            </Col>
-                        </Row>
-                        <Row className="mt-2">
-                            <Col className="text-start">
-                                <Form.Label htmlFor="password" visuallyHidden>
-                                    Your Password
-                                </Form.Label>
-                                <InputGroup className="mb-2">
-                                    <FormControl
-                                        required
-                                        autoComplete="current-name"
-                                        id="tour-name"
-                                        value={singleOrder?.name}
-                                        placeholder="Tour Place Name"
-                                    />
-                                </InputGroup>
-                            </Col>
-                        </Row>
-                        <button type="submit" className="btn btn-primary mt-2 w-100">
-                            Confirm
-                        </button>
-                    </Form>
+        <div className="container my-5">
+            <div className="row gx-4">
+                <div className="text-center col-lg-7 col-sm-12">
+                    {
+                        newService?.pName ?
+                            <div className="card mb-4">
+                                <img src={newService?.img} className="card-img-top" alt="..." />
+                                <div className="card-body">
+                                    <h5 className="card-title">Place: {newService?.pName}</h5>
+                                    <h5 className="card-title">Price: {newService?.price}৳</h5>
+                                    <p className="card-text">{newService?.description}</p>
+                                    <div className="row ">
+                                        <div className="text-center">
+                                            <button onClick={() => addToOrder(newService)} className="btn btn-primary px-5" type="button">Booking</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            :
+                            <div className="my-5 py-5">
+                                <h5 className="fw-bold fs-1 my-4">No Service Found!</h5>
+                            </div>
+                    }
+                </div>
+                <div className="order-form col-lg-5 col-sm-12">
+                    <div className="ms-5">
+                        <form onSubmit={handleSubmit}>
+
+                            <input defaultValue={user?.displayName} onChange={handleInputs} name="name" required />
+                            <input defaultValue={user?.email} onChange={handleInputs} name="email" required />
+                            <input placeholder="Address" onChange={handleInputs} name="address" required />
+                            <input placeholder="City" onChange={handleInputs} name="city" required />
+                            <input placeholder="phone number" onChange={handleInputs} name="phone" required />
+                            <input defaultValue={singleOrder?.pName} onChange={handleInputs} name="pName" />
+
+                            <input type="submit" />
+                        </form>
+                    </div>
                 </div>
             </div>
+
+
         </div>
     );
 };

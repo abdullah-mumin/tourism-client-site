@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from './Pages/Home/Header/Header';
@@ -6,7 +5,6 @@ import Login from './Pages/Login/Login';
 import Home from './Pages/Home/Home/Home';
 import Services from './Pages/Services/Services';
 import Banner from './Pages/Home/Banner/Banner';
-import Details from './Pages/Details/Details';
 import Choose from './Pages/Choose/Choose';
 import Footer from './Pages/Home/Footer/Footer';
 import AuthProvider from './context/AuthProvider';
@@ -15,10 +13,12 @@ import Contact from './Pages/Contact/Contact';
 import PrivateRoute from './Pages/PrivateRoute/PrivateRoute';
 import Order from './Pages/Order/Order';
 import MyOrders from './Pages/MyOrders/MyOrders';
+import NotFound from './Pages/NotFound/NotFound';
+import Dashboard from './Pages/Dashboard/Dashboard';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <AuthProvider>
         <Router>
           <Header></Header>
@@ -32,15 +32,15 @@ function App() {
             <Route path="/banner">
               <Banner></Banner>
             </Route>
-            <Route path="/services">
+            <Route exact path="/services">
               <Services></Services>
             </Route>
-            <Route path="/details/:id">
-              <Details></Details>
-            </Route>
-            <Route path="/order/:id">
+            <PrivateRoute path="/order/:id">
               <Order></Order>
-            </Route>
+            </PrivateRoute>
+            <PrivateRoute path="/dashboard">
+              <Dashboard></Dashboard>
+            </PrivateRoute>
             <Route path="/myOrder">
               <MyOrders></MyOrders>
             </Route>
@@ -58,6 +58,9 @@ function App() {
             </Route>
             <Route path="/login">
               <Login></Login>
+            </Route>
+            <Route path="*">
+              <NotFound></NotFound>
             </Route>
           </Switch>
           <Footer></Footer>

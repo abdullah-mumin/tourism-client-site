@@ -2,7 +2,7 @@ import React from 'react';
 
 const Choose = () => {
     return (
-        <div className="container mt-lg-4">
+        <div className="container mt-lg-4 text-center">
             <p className="fw-bolder fs-1 bg-success">WHY CHOOSE SUNSHINE TOURS</p>
             <div className="row">
                 <div className="col-lg-4 p-3">

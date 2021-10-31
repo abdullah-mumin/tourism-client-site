@@ -1,48 +1,54 @@
 [
     {
         "id": 1,
-        "name": "Rangamati",
-        "price": "7500",
+        "key": 1001,
+        "pName": "Rangamati",
+        "price": 7500,
         "data": "3 Days and 2 Nights",
         "description": "Rangamti is a district of the Chittagong Hill-Tracts area. The main reason to visit this place is Kaptai Lake. It is a naturally beautiful man-made lake surrounded by to experience beautiful hills. The best thing to do at Rangamati is to enjoy a boat ride on Kaptai Lake for the whole day.",
         "img": "https://i.ibb.co/wcTRHDy/rangamati.jpg"
     },
     {
         "id": 2,
-        "name": "Mosque City of Bagerhat",
-        "price": "5500",
+        "key": 1002,
+        "pName": "Mosque City of Bagerhat",
+        "price": 5500,
         "data": "2 Days and 2 Nights",
         "description": "Bagerhat is a city founded in the 15th century by a Turkish general, which was formerly known as Khalifatabad. It is full of beautiful historic mosques, among which 60 Dome Mosque is the most famous. This whole city is recognized as a UNESCO world heritage site.",
         "img": "https://i.ibb.co/zs7zsD7/60-gonmuj.jpg"
     },
     {
         "id": 3,
-        "name": "Cox's Bazar",
-        "price": "8500",
+        "key": 1003,
+        "pName": "Cox's Bazar",
+        "price": 8500,
         "data": "4 Days and 3 Nights",
         "description": "Cox’s Bazar is the longest unbroken sandy beach in the world, 125 km in length. It is the most popular tourist spot among the locals in Bangladesh. Perfect place to to experience relax at the end of a long trip. To avoid the crowd, stay on a resort with their own private beach.",
         "img": "https://i.ibb.co/rpQDQtF/coxs-bazar.jpg"
     },
     {
         "id": 4,
-        "name": "Sylhet",
-        "price": "6500",
+        "key": 1004,
+        "pName": "Sylhet",
+        "price": 6500,
         "data": "3 Days and 2 Nights",
         "description": "Sylhet is a naturally beautiful place in the northeastern part of Bangladesh, close to the Meghalaya state of India. It has many beautiful places to visit. Green-water canal Lalakhal, stone collecting area Jaflong, Ratargul swamp forest, and many of its tea gardens.",
         "img": "https://i.ibb.co/FhVKq7C/the-tea.jpg"
     },
     {
         "id": 5,
-        "name": "Barisal",
-        "price": "6000",
+        "key": 1005,
+        "pName": "Barisal",
+        "price": 6000,
         "data": "2 Days and 2 Nights",
         "description": "Barisal is a unique place located in the heart of the Ganges Delta. Life in Barisal is fully based on the river. The main attraction to visit Barisal is to experience the unique life and culture of the people of this region. You can visit its many floating markets, bazaars, schools.",
         "img": "https://i.ibb.co/RPChDtN/floating-guava-market.jpg"
     },
     {
         "id": 6,
-        "name": "St. Martin's Island",
-        "price": "9500",
+        "key": 1006,
+        "pName": "St. Martin's Island",
+        "price": 9500,
         "data": "4 Days and 3 Nights",
         "description": "St. Martin’s Island is a beautiful coral island of the Bay of Bengal in Bangladesh. For beach lovers, this is the best place to visit in Bangladesh. Local tourists go to visit this island mostly on a day trip. After they leave in the afternoon, it becomes really quiet to experience.",
         "img": "https://i.ibb.co/DLNWbYM/saint-martin.jpg"

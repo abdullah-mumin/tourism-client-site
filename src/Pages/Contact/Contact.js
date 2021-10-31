@@ -2,8 +2,8 @@ import React from 'react';
 
 const Contact = () => {
     return (
-        <div className="container">
-            <p className="fw-bolder fs-1">How to reach us?</p>
+        <div className="container mt-4 text-center">
+            <p className="fw-bolder fs-1"> <span>How to reach us?</span> </p>
             <div className="row">
                 <div className="col-6">
                     <p>
@@ -23,19 +23,18 @@ const Contact = () => {
                         <strong>Phone: </strong>
                         <br />
                         +88-01799-002244
-                        <br />
-                        <p>(09.00 am – 06.00 pm except Friday and Govt. Holidays. We prefer email.)</p>
                     </p>
                     <p>
                         <strong>WhatsApp:</strong>
                         <br />
                         01758-897959
                         <br />
-                        (Text Only. No Call. For emergency contacts only. Please send any inquiries by email only.)
+                        (Text Only. No Call. For emergency contacts only.)
                     </p>
                 </div>
             </div>
-            <p>Business Hours</p>
+            <hr />
+            <p className="fw-bolder fs-3">Business Hours</p>
             <div>
                 <p>
                     <strong>Saturday – Thursday:</strong>
