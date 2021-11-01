@@ -10,6 +10,7 @@ const MyOrders = () => {
 
     const totalPrice = selectedService.reduce((total, service) => total + service.price, 0);
 
+
     return (
         <div className="my-4 container">
             {selectedService.length ? <div className="row">
@@ -41,7 +42,9 @@ const MyOrders = () => {
                 <div className="col-lg-8 col-sm-12">
                     {
                         selectedService.map((service) => {
-                            const { key, _id, img, pName, description, price, data, status } = service;
+                            const { _id, key, img, pName, description, price, data, status } = service;
+                            console.log(pName);
+                            console.log(_id);
                             return (
                                 <div key={key} className="row border border-4 border-info rounded-3 mb-3">
                                     <div className="col-lg-4 col-sm-12 d-flex align-items-center">

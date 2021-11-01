@@ -30,7 +30,7 @@ const useOrder = () => {
         service.status = "Pending";
 
         if (isHave) {
-            alert("Already Purchased");
+            alert("Already Confirmed");
         }
         else {
             fetch("http://localhost:5000/service/add", {
@@ -54,7 +54,7 @@ const useOrder = () => {
         const confarmation = window.confirm('Are you sure  you want to delete!');
         if (confarmation) {
             fetch(`http://localhost:5000/remove/${id}`, {
-                method: 'DELETE'
+                method: 'DELETE',
             })
                 .then(res => res.json())
                 .then(data => {

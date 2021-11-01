@@ -60,7 +60,7 @@ const Order = () => {
                                     <p className="card-text">{service?.description}</p>
                                     <div className="row ">
                                         <div className="text-center">
-                                            <button onClick={() => addToOrder(service)} className="btn btn-primary px-5" type="button">Booking</button>
+                                            <button onClick={() => addToOrder(service)} className="btn btn-primary px-5" type="button">Confirm</button>
                                         </div>
                                     </div>
                                 </div>
