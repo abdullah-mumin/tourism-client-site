@@ -1,24 +1,15 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import useOrder from '../../Hooks/useOrder';
 import './Service.css';
 
 const Service = ({ service }) => {
-    const { id, pName, price, description, img } = service;
+    const { _id, pName, price, description, img } = service;
 
     const history = useHistory();
-    // const { addToOrder } = useOrder();
-
-    // const handleDetails = (id) => {
-    //     // console.log(id);
-    //     const uri = `services/${id}`;
-    //     history.push(uri);
-    // }
 
     const handleOrder = (id) => {
         const uri = `/order/${id}`;
         history.push(uri);
-        // console.log(id);
     }
 
 
@@ -32,7 +23,7 @@ const Service = ({ service }) => {
                     <p className="card-text">{description}</p>
                     <div className="row ">
                         <div className="text-center">
-                            <button onClick={() => handleOrder(id)} className="btn btn-primary px-4" type="button">Purchase</button>
+                            <button onClick={() => handleOrder(_id)} className="btn btn-primary px-4" type="button">Purchase</button>
                         </div>
                     </div>
                 </div>

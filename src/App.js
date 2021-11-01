@@ -14,7 +14,7 @@ import PrivateRoute from './Pages/PrivateRoute/PrivateRoute';
 import Order from './Pages/Order/Order';
 import MyOrders from './Pages/MyOrders/MyOrders';
 import NotFound from './Pages/NotFound/NotFound';
-import Dashboard from './Pages/Dashboard/Dashboard';
+import AdminPanel from './Pages/AdminPanel/AdminPanel';
 
 function App() {
   return (
@@ -35,18 +35,15 @@ function App() {
             <Route exact path="/services">
               <Services></Services>
             </Route>
+            <Route exact path="/admin">
+              <AdminPanel />
+            </Route>
             <PrivateRoute path="/order/:id">
               <Order></Order>
-            </PrivateRoute>
-            <PrivateRoute path="/dashboard">
-              <Dashboard></Dashboard>
             </PrivateRoute>
             <Route path="/myOrder">
               <MyOrders></MyOrders>
             </Route>
-            {/* <Route path="/orders">
-              <Orders></Orders>
-            </Route> */}
             <Route path="/contact">
               <Contact></Contact>
             </Route>

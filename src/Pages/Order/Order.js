@@ -9,13 +9,25 @@ import useOrder from '../../Hooks/useOrder';
 
 const Order = () => {
     const { reset } = useForm();
+    const [service, setService] = useState({});
 
     const { id } = useParams();
     const { services, allContexts, addToOrder } = useAuth();
     const { user } = allContexts;
     const history = useHistory();
-    const newService = services?.find((service) => service.id === Number(id));
     const [singleOrder, setSinglrOrder] = useState({});
+    useEffect(() => {
+        fetch(`http://localhost:5000/order/${id}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data._id) {
+                    setService(data);
+                }
+                else {
+                    alert('Something went wrong!');
+                }
+            })
+    }, [])
 
     const handleInputs = (e) => {
 
@@ -39,16 +51,16 @@ const Order = () => {
             <div className="row gx-4">
                 <div className="text-center col-lg-7 col-sm-12">
                     {
-                        newService?.pName ?
+                        service?.pName ?
                             <div className="card mb-4">
-                                <img src={newService?.img} className="card-img-top" alt="..." />
+                                <img src={service?.img} className="card-img-top" alt="..." />
                                 <div className="card-body">
-                                    <h5 className="card-title">Place: {newService?.pName}</h5>
-                                    <h5 className="card-title">Price: {newService?.price}৳</h5>
-                                    <p className="card-text">{newService?.description}</p>
+                                    <h5 className="card-title">Place: {service?.pName}</h5>
+                                    <h5 className="card-title">Price: {service?.price}৳</h5>
+                                    <p className="card-text">{service?.description}</p>
                                     <div className="row ">
                                         <div className="text-center">
-                                            <button onClick={() => addToOrder(newService)} className="btn btn-primary px-5" type="button">Booking</button>
+                                            <button onClick={() => addToOrder(service)} className="btn btn-primary px-5" type="button">Booking</button>
                                         </div>
                                     </div>
                                 </div>

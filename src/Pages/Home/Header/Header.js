@@ -10,6 +10,7 @@ const Header = () => {
 
     const { allContexts } = useAuth();
     const { user, logOut } = allContexts;
+    const { uid } = user;
 
     // console.log(user);
     return (
@@ -40,9 +41,6 @@ const Header = () => {
                                         <Nav.Link as={NavLink} to="/myOrder" className="text-black">
                                             My Orders
                                         </Nav.Link>
-                                        <Nav.Link as={NavLink} to="/dashboard" className="text-black">
-                                            Dashboard
-                                        </Nav.Link>
                                         <Nav.Link as={NavLink} to="/home" onClick={logOut} className="text-black">
                                             Log out
                                         </Nav.Link>
@@ -55,6 +53,11 @@ const Header = () => {
                                     <Nav.Link className="text-black" as={NavLink} to="/login">
                                         Log in
                                     </Nav.Link>
+                            }
+                            {
+                                (uid === 'KpGO62jRY8d08UvBV4GSeHulNWR2') && (<Nav.Link className="text-black" as={NavLink} to="/admin">
+                                    Admin Panel
+                                </Nav.Link>)
                             }
                         </Nav>
                     </Navbar.Collapse>

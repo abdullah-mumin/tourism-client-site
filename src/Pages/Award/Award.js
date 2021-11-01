@@ -7,14 +7,17 @@ const Award = () => {
     return (
         <div className="container mt-4">
             <hr />
+            <div>
+                <p className="fw-bolder fs-1 text-center bg-success">Our Rewards</p>
+            </div>
             <div className="row g-4">
-                <div className="col-lg-4 col-md-12 col-sm-12">
+                <div className="col-lg-4 text-center col-sm-12">
                     <img src={award2} alt="" />
                 </div>
-                <div className="col-lg-4 col-md-12 col-sm-12">
+                <div className="col-lg-4 text-center col-sm-12">
                     <img src={award1} alt="" />
                 </div>
-                <div className="col-lg-4 col-md-12 col-sm-12">
+                <div className="col-lg-4 text-center col-sm-12">
                     <img src={award3} alt="" />
                 </div>
             </div>
