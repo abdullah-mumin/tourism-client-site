@@ -4,7 +4,7 @@ const ManageAllOrders = () => {
     const [orders, setOrders] = useState([]);
     const [reload, setReload] = useState(true);
     useEffect(() => {
-        fetch('http://localhost:5000/orders')
+        fetch('https://infinite-crag-97882.herokuapp.com/orders')
             .then(res => res.json())
             .then(data => {
                 setOrders(data);
@@ -14,7 +14,7 @@ const ManageAllOrders = () => {
     const handleCancle = (id) => {
         const confarmation = window.confirm('Are you sure  you want to delete!');
         if (confarmation) {
-            fetch(`http://localhost:5000/remove/${id}`, {
+            fetch(`https://infinite-crag-97882.herokuapp.com/remove/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -33,7 +33,7 @@ const ManageAllOrders = () => {
     const handleConfirm = (id) => {
         const confirmation = window.confirm('Are you sure to confirm');
         if (confirmation) {
-            fetch(`http://localhost:5000/confirm/${id}`, {
+            fetch(`https://infinite-crag-97882.herokuapp.com/confirm/${id}`, {
                 method: 'PUT'
             })
                 .then(res => res.json())
@@ -68,9 +68,9 @@ const ManageAllOrders = () => {
                     <tbody>
                         {
                             orders.map(order => {
-                                const { _id, img, pName, name, price, email, status } = order;
+                                const { _id, key, img, pName, name, price, email, status } = order;
                                 return (
-                                    <tr>
+                                    <tr key={key}>
                                         <th><img width="50px" src={img} alt="" /></th>
                                         <td>{pName}</td>
                                         <td>{name}</td>

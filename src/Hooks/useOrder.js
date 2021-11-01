@@ -8,7 +8,7 @@ const useOrder = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/myOrder/${uid}`)
+        fetch(`https://infinite-crag-97882.herokuapp.com/myOrder/${uid}`)
             .then(res => res.json())
             .then(data => {
                 if (data.length) {
@@ -33,7 +33,7 @@ const useOrder = () => {
             alert("Already Confirmed");
         }
         else {
-            fetch("http://localhost:5000/service/add", {
+            fetch("https://infinite-crag-97882.herokuapp.com/service/add", {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -53,7 +53,7 @@ const useOrder = () => {
     const remove = (id) => {
         const confarmation = window.confirm('Are you sure  you want to delete!');
         if (confarmation) {
-            fetch(`http://localhost:5000/remove/${id}`, {
+            fetch(`https://infinite-crag-97882.herokuapp.com/remove/${id}`, {
                 method: 'DELETE',
             })
                 .then(res => res.json())

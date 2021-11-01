@@ -17,7 +17,7 @@ const Order = () => {
     const history = useHistory();
     const [singleOrder, setSinglrOrder] = useState({});
     useEffect(() => {
-        fetch(`http://localhost:5000/order/${id}`)
+        fetch(`https://infinite-crag-97882.herokuapp.com/order/${id}`)
             .then(res => res.json())
             .then(data => {
                 if (data._id) {

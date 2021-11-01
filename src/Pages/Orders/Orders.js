@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 const Orders = () => {
     const [orders, setOrders] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/orders')
+        fetch('https://infinite-crag-97882.herokuapp.com/orders')
             .then(res => res.json())
             .then(data => {
                 setOrders(data);
@@ -13,7 +13,7 @@ const Orders = () => {
         <div>
             <h2 className="text-center fw-bolder">All Orders</h2>
             <div style={{ overflowX: "auto" }}>
-                <table class="table table-hover col-sm-12  s}">
+                <table className="table table-hover col-sm-12  s}">
                     <thead>
                         <tr>
                             <th scope="col">Image</th>
@@ -27,9 +27,9 @@ const Orders = () => {
                     <tbody>
                         {
                             orders.map(order => {
-                                const { img, pName, name, price, email, status } = order;
+                                const { key, img, pName, name, price, email, status } = order;
                                 return (
-                                    <tr>
+                                    <tr key={key}>
                                         <th><img width="50px" src={img} alt="" /></th>
                                         <td>{pName}</td>
                                         <td>{name}</td>

@@ -24,7 +24,7 @@ const MyOrders = () => {
                     </div>
                     <div>
                         <button onClick={() => {
-                            fetch(`http://localhost:5000/checkOut/${uid}`, {
+                            fetch(`https://infinite-crag-97882.herokuapp.com/checkOut/${uid}`, {
                                 method: 'DELETE'
                             })
                                 .then(res => res.json())
@@ -43,8 +43,6 @@ const MyOrders = () => {
                     {
                         selectedService.map((service) => {
                             const { _id, key, img, pName, description, price, data, status } = service;
-                            console.log(pName);
-                            console.log(_id);
                             return (
                                 <div key={key} className="row border border-4 border-info rounded-3 mb-3">
                                     <div className="col-lg-4 col-sm-12 d-flex align-items-center">
